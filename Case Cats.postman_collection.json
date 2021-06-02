@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "ee3e948c-fbb9-40dd-baee-6a87b0f44945",
+		"name": "Case Cats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lista todas as raças",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/cats_breeds",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"cats_breeds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista raças por temperamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/cats_breeds?temperament=active",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"cats_breeds"
+					],
+					"query": [
+						{
+							"key": "temperament",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista raças por origem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/cats_breeds?origin=egypt",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"cats_breeds"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "egypt"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista raças por origem e temperamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/cats_breeds?origin=egypt&temperament=active",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"cats_breeds"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "egypt"
+						},
+						{
+							"key": "temperament",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista informações por raça",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/breed_info?breed_name=Aegean",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"breed_info"
+					],
+					"query": [
+						{
+							"key": "breed_name",
+							"value": "Aegean"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
