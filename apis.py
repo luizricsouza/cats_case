@@ -3,17 +3,23 @@ import sqlite3
 import settings
 import datetime
 import time
+import logging
 
 from flask import Flask
 from flask import jsonify
 from flask import g
 from flask.globals import request
-from sqlite3 import Error
 from rfc3339 import rfc3339
 
 db_file = settings.db_file
 
+FORMAT = '%(levelname)s %(name)s %(message)s'
+logging.basicConfig(filename='app.log', level=logging.INFO, format=FORMAT)
+
 app = Flask(__name__)
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.INFO)
 
 @app.before_request
 def start_timer():
@@ -34,7 +40,7 @@ def log_request(response):
     host = request.host.split(":", 1)[0]
     params = dict(request.args)
     dt = datetime.datetime.fromtimestamp(now)
-    timestamp = rfc3339(dt, utc=True)
+    timestamp = rfc3339(dt, utc=False)
     request_id = request.headers.get("X-Request-ID", "")
 
     log_params = {
@@ -49,7 +55,13 @@ def log_request(response):
         "request_id": request_id,
     }
 
-    app.logger.info("request", **log_params)
+    parts = []
+    for name, value in log_params.items():
+        part = "{}={}".format(name, value)
+        parts.append(part)
+    line = " ".join(parts)
+
+    app.logger.info(line)
 
     return response
 
