@@ -19,7 +19,7 @@ logging.basicConfig(filename='app.log', level=logging.INFO, format=FORMAT)
 app = Flask(__name__)
 
 log = logging.getLogger('werkzeug')
-log.setLevel(logging.INFO)
+log.setLevel(logging.WARNING)
 
 @app.before_request
 def start_timer():
@@ -116,4 +116,4 @@ def get_breed_info():
         return 'breed not found', 404
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
