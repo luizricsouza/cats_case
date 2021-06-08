@@ -11,3 +11,7 @@ sql_create_breeds_table = """ CREATE TABLE IF NOT EXISTS breeds (
                                     origin text,
                                     description text
                                 ); """
+
+
+log_folder = 'logs'
+log_file = 'app.log'

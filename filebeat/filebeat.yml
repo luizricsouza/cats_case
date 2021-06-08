@@ -1,0 +1,17 @@
+filebeat:
+  inputs:
+    -
+      paths:
+        - /cats_app/logs/*.log
+      input_type: log
+      scan_frequency: 10s
+      json.message_key: msg
+      json.keys_under_root: true
+      json.add_error_key: true
+output:
+  elasticsearch:
+    hosts: ["elasticsearch:9200"]
+    indices:
+    - index: "filebeat-cats-app-%{+yyyy.MM.dd}"
+logging.json: true
+logging.metrics.enabled: false

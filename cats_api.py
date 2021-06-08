@@ -4,6 +4,8 @@ import settings
 import datetime
 import time
 import logging
+import os
+import json
 
 from flask import Flask
 from flask import jsonify
@@ -12,14 +14,21 @@ from flask.globals import request
 from rfc3339 import rfc3339
 
 db_file = settings.db_file
+log_folder = settings.log_folder
+log_file = settings.log_file
 
-FORMAT = '%(levelname)s %(name)s %(message)s'
-logging.basicConfig(filename='app.log', level=logging.INFO, format=FORMAT)
+if not os.path.exists(log_folder):
+    os.makedirs(log_folder)
+
+log_file_path = os.path.join(log_folder, log_file)
+
+FORMAT = '{"time": "%(asctime)s", "name": "%(name)s", "level": "%(levelname)s", "message": %(message)s}'
+logging.basicConfig(filename=log_file_path, level=logging.INFO, format=FORMAT)
 
 app = Flask(__name__)
 
 log = logging.getLogger('werkzeug')
-log.setLevel(logging.WARNING)
+log.setLevel(logging.ERROR)
 
 @app.before_request
 def start_timer():
@@ -55,13 +64,7 @@ def log_request(response):
         "request_id": request_id,
     }
 
-    parts = []
-    for name, value in log_params.items():
-        part = "{}={}".format(name, value)
-        parts.append(part)
-    line = " ".join(parts)
-
-    app.logger.info(line)
+    app.logger.info(json.dumps(log_params))
 
     return response
 
@@ -115,5 +118,5 @@ def get_breed_info():
         conn.close()
         return 'breed not found', 404
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0')
