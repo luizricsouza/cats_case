@@ -2,7 +2,7 @@
 
 Foobar is a Python library for dealing with word pluralization.
 
-## Installation
+## Instalação
 
 Para subir o ambiente, executar o docker-compose na pasta da aplicação.
 
@@ -10,20 +10,15 @@ Para subir o ambiente, executar o docker-compose na pasta da aplicação.
 docker-compose up
 ```
 
-## Usage
+## Uso da API
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+```bash
+curl --location --request GET 'localhost:5000/cats_breeds'
+curl --location --request GET 'localhost:5000/cats_breeds?temperament=active'
+curl --location --request GET 'localhost:5000/cats_breeds?origin=egypt'
+curl --location --request GET 'localhost:5000/cats_breeds?origin=egypt&temperament=active'
+curl --location --request GET 'http://localhost:5000/breed_info?breed_name=aegean'
 ```
+## Log API
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
