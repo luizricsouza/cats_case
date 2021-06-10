@@ -1,6 +1,11 @@
 # Cats Case
 
-Foobar is a Python library for dealing with word pluralization.
+A aplicação consiste em scripts Python de coleta de dados e uma API para consulta dos dados coletados, os dados coletados ficam armazenados numa base SQLite.
+Para a API foi utilizado o framework Flask. Roda em um ambiente Docker utilizando docker compose para orquestrar os servicos.
+
+## Arquitetura
+
+![](imagens/arquitetura.png)
 
 ## Instalação
 
@@ -21,4 +26,8 @@ curl --location --request GET 'http://localhost:5000/breed_info?breed_name=aegea
 ```
 ## Log API
 
+![](/imagens/api_log.png)
 
+## Dashboard
+
+![](imagens/dashboard.png)
